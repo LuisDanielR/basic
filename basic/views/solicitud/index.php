@@ -12,14 +12,12 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-        <?= $form->field($model, 'id') ?>
-        <?= $form->field($model, 'asunto') ?>
-        <?= $form->field($model, 'origen') ?>
-        <?= $form->field($model, 'destino') ?>
-        <?= $form->field($model, 'texto') ?>
-    
+        <?= $form->field($model, 'folio') ?>
+        <?= $form->field($model, 'solicitante') ?>
+        <?= $form->field($model, 'tipo') ?>
+        <?= $form->field($model, 'texto') ?>            
         <div class="form-group">
-            <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']) ?>
+            <?= Html::submitButton('Enviar', ['class' => 'btn btn-primary']) ?>
         </div>
     <?php ActiveForm::end(); ?>
 

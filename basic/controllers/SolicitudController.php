@@ -1,12 +1,12 @@
 <?php
 
 namespace app\controllers;
-use app\models\Email;
+use app\models\Solicitud;
 use Yii;
-class EmailController extends \yii\web\Controller {
-
-    public function actionIndex() {
-        $model = new Email();   
+class SolicitudController extends \yii\web\Controller
+{
+     public function actionIndex() {
+        $model = new Solicitud();   
         if($model->load(Yii::$app->request->post()) && $model->save()){
             return $this->render('index', [
                     'model' => $model,
@@ -19,4 +19,5 @@ class EmailController extends \yii\web\Controller {
         
     
 }
+
 }

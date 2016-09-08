@@ -3,6 +3,7 @@
 namespace app\controllers;
 use app\models\Email;
 use Yii;
+
 class EmailController extends \yii\web\Controller {
 
     public function actionIndex() {

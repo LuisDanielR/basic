@@ -11,7 +11,7 @@
 
 		public function rules(){
 			return [ 
-					[['nombre', 'control'],'required'], ['correo','email']
+					[['nombre', 'control'],'required'],['telefono','number'], ['correo','email']
 					];	
 		}		
 

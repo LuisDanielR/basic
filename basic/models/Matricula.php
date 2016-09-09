@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "matricula".
  *
  * @property string $idmatricula
- * @property string $año
+ * @property string $year
  *
  * @property Automovil[] $automovils
  */
@@ -29,7 +29,7 @@ class Matricula extends \yii\db\ActiveRecord
     {
         return [
             [['idmatricula'], 'required'],
-            [['año'], 'safe'],
+            [['year'], 'safe'],
             [['idmatricula'], 'string', 'max' => 10],
         ];
     }
@@ -41,7 +41,7 @@ class Matricula extends \yii\db\ActiveRecord
     {
         return [
             'idmatricula' => 'Idmatricula',
-            'año' => 'A�o',
+            'year' => 'Year',
         ];
     }
 

@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Automovil;
-use app\models\AutomovilSearch;
+use app\models\Branches;
+use app\models\BranchesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
+
 /**
- * AutomovilController implements the CRUD actions for Automovil model.
+ * BranchesController implements the CRUD actions for Branches model.
  */
-class AutomovilController extends Controller
+class BranchesController extends Controller
 {
     /**
      * @inheritdoc
@@ -20,17 +20,6 @@ class AutomovilController extends Controller
     public function behaviors()
     {
         return [
-            'access'=>[
-                'class'=>AccessControl::classname(),
-                'only'=>['create','update'],
-            'rules'=>[
-                    [
-                        'allow'=>true,
-                        'roles'=>['@']
-                    ]
-                ]
-            ],
-            
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -41,12 +30,12 @@ class AutomovilController extends Controller
     }
 
     /**
-     * Lists all Automovil models.
+     * Lists all Branches models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new AutomovilSearch();
+        $searchModel = new BranchesSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -56,7 +45,7 @@ class AutomovilController extends Controller
     }
 
     /**
-     * Displays a single Automovil model.
+     * Displays a single Branches model.
      * @param integer $id
      * @return mixed
      */
@@ -68,16 +57,16 @@ class AutomovilController extends Controller
     }
 
     /**
-     * Creates a new Automovil model.
+     * Creates a new Branches model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Automovil();
+        $model = new Branches();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->branch_id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -86,7 +75,7 @@ class AutomovilController extends Controller
     }
 
     /**
-     * Updates an existing Automovil model.
+     * Updates an existing Branches model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -96,7 +85,7 @@ class AutomovilController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->branch_id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -105,7 +94,7 @@ class AutomovilController extends Controller
     }
 
     /**
-     * Deletes an existing Automovil model.
+     * Deletes an existing Branches model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -118,15 +107,15 @@ class AutomovilController extends Controller
     }
 
     /**
-     * Finds the Automovil model based on its primary key value.
+     * Finds the Branches model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Automovil the loaded model
+     * @return Branches the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Automovil::findOne($id)) !== null) {
+        if (($model = Branches::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

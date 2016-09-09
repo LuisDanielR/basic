@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Matricula;
+use app\models\Branches;
 
 /**
- * MatriculaSearch represents the model behind the search form about `app\models\Matricula`.
+ * BranchesSearch represents the model behind the search form about `app\models\Branches`.
  */
-class MatriculaSearch extends Matricula
+class BranchesSearch extends Branches
 {
     /**
      * @inheritdoc
@@ -18,7 +18,8 @@ class MatriculaSearch extends Matricula
     public function rules()
     {
         return [
-            [['idmatricula', 'year'], 'safe'],
+            [['branch_id'], 'integer'],
+            [['branch_name', 'companies_company_id','branch_address', 'branch_created_date', 'branch_status'], 'safe'],
         ];
     }
 
@@ -40,7 +41,7 @@ class MatriculaSearch extends Matricula
      */
     public function search($params)
     {
-        $query = Matricula::find();
+        $query = Branches::find();
 
         // add conditions that should always apply here
 
@@ -56,12 +57,17 @@ class MatriculaSearch extends Matricula
             return $dataProvider;
         }
 
+        $query->joinWith('companiesCompany');
         // grid filtering conditions
         $query->andFilterWhere([
-            'year' => $this->year,
+            'branch_id' => $this->branch_id,            
+            'branch_created_date' => $this->branch_created_date,
         ]);
 
-        $query->andFilterWhere(['like', 'idmatricula', $this->idmatricula]);
+        $query->andFilterWhere(['like', 'branch_name', $this->branch_name])
+            ->andFilterWhere(['like', 'branch_address', $this->branch_address])
+            ->andFilterWhere(['like', 'branch_status', $this->branch_status])
+            ->andFilterWhere(['like', 'companies.company_name', $this->companies_company_id]);                
 
         return $dataProvider;
     }

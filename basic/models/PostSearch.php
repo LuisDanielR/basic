@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Matricula;
+use app\models\Post;
 
 /**
- * MatriculaSearch represents the model behind the search form about `app\models\Matricula`.
+ * PostSearch represents the model behind the search form about `app\models\Post`.
  */
-class MatriculaSearch extends Matricula
+class PostSearch extends Post
 {
     /**
      * @inheritdoc
@@ -18,7 +18,8 @@ class MatriculaSearch extends Matricula
     public function rules()
     {
         return [
-            [['idmatricula', 'year'], 'safe'],
+            [['post_id', 'author_author_id'], 'integer'],
+            [['post_title', 'post_description'], 'safe'],
         ];
     }
 
@@ -40,7 +41,7 @@ class MatriculaSearch extends Matricula
      */
     public function search($params)
     {
-        $query = Matricula::find();
+        $query = Post::find();
 
         // add conditions that should always apply here
 
@@ -55,13 +56,17 @@ class MatriculaSearch extends Matricula
             // $query->where('0=1');
             return $dataProvider;
         }
-
+        $query->joinWith('authorAuthor');
+        
         // grid filtering conditions
         $query->andFilterWhere([
-            'year' => $this->year,
+            'post_id' => $this->post_id,
+            'author_author_id' => $this->author_author_id,
         ]);
 
-        $query->andFilterWhere(['like', 'idmatricula', $this->idmatricula]);
+        $query->andFilterWhere(['like', 'post_title', $this->post_title])
+            ->andFilterWhere(['like', 'post_description', $this->post_description])
+            ->andFilterWhere(['like', 'author.author_name', $this->author_author_id]);
 
         return $dataProvider;
     }

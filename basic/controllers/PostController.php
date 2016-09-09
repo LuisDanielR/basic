@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Automovil;
-use app\models\AutomovilSearch;
+use app\models\Post;
+use app\models\PostSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 /**
- * AutomovilController implements the CRUD actions for Automovil model.
+ * PostController implements the CRUD actions for Post model.
  */
-class AutomovilController extends Controller
+class PostController extends Controller
 {
     /**
      * @inheritdoc
@@ -20,7 +20,7 @@ class AutomovilController extends Controller
     public function behaviors()
     {
         return [
-            'access'=>[
+                'access'=>[
                 'class'=>AccessControl::classname(),
                 'only'=>['create','update'],
             'rules'=>[
@@ -30,7 +30,6 @@ class AutomovilController extends Controller
                     ]
                 ]
             ],
-            
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -41,12 +40,12 @@ class AutomovilController extends Controller
     }
 
     /**
-     * Lists all Automovil models.
+     * Lists all Post models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new AutomovilSearch();
+        $searchModel = new PostSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -56,7 +55,7 @@ class AutomovilController extends Controller
     }
 
     /**
-     * Displays a single Automovil model.
+     * Displays a single Post model.
      * @param integer $id
      * @return mixed
      */
@@ -68,16 +67,16 @@ class AutomovilController extends Controller
     }
 
     /**
-     * Creates a new Automovil model.
+     * Creates a new Post model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Automovil();
+        $model = new Post();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->post_id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -86,7 +85,7 @@ class AutomovilController extends Controller
     }
 
     /**
-     * Updates an existing Automovil model.
+     * Updates an existing Post model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -96,7 +95,7 @@ class AutomovilController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->post_id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -105,7 +104,7 @@ class AutomovilController extends Controller
     }
 
     /**
-     * Deletes an existing Automovil model.
+     * Deletes an existing Post model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -118,15 +117,15 @@ class AutomovilController extends Controller
     }
 
     /**
-     * Finds the Automovil model based on its primary key value.
+     * Finds the Post model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Automovil the loaded model
+     * @return Post the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Automovil::findOne($id)) !== null) {
+        if (($model = Post::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

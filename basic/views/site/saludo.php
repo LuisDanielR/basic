@@ -1,1 +1,1 @@
-<h2> Hola mundo <h2>
+<h2> Mensaje hola a todos desde yii2 :)  <h2>

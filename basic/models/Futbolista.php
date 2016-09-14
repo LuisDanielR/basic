@@ -10,9 +10,9 @@ use Yii;
  * @property integer $id_futbolista
  * @property string $nombre_futbolista
  * @property integer $edad
- * @property integer $id_equipo
+ * @property integer $fk_id_equipo
  *
- * @property Equipo $idEquipo
+ * @property Equipo $fkIdEquipo
  */
 class Futbolista extends \yii\db\ActiveRecord
 {
@@ -30,10 +30,10 @@ class Futbolista extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_futbolista', 'nombre_futbolista'], 'required'],
-            [['id_futbolista', 'edad', 'id_equipo'], 'integer'],
+            [['nombre_futbolista'], 'required'],
+            [['edad', 'fk_id_equipo'], 'integer'],
             [['nombre_futbolista'], 'string', 'max' => 255],
-            [['id_equipo'], 'exist', 'skipOnError' => true, 'targetClass' => Equipo::className(), 'targetAttribute' => ['id_equipo' => 'id_equipo']],
+            [['fk_id_equipo'], 'exist', 'skipOnError' => true, 'targetClass' => Equipo::className(), 'targetAttribute' => ['fk_id_equipo' => 'id_equipo']],
         ];
     }
 
@@ -46,15 +46,15 @@ class Futbolista extends \yii\db\ActiveRecord
             'id_futbolista' => 'Id Futbolista',
             'nombre_futbolista' => 'Nombre Futbolista',
             'edad' => 'Edad',
-            'id_equipo' => 'Id Equipo',
+            'fk_id_equipo' => 'Fk Id Equipo',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getIdEquipo()
+    public function getFkIdEquipo()
     {
-        return $this->hasOne(Equipo::className(), ['id_equipo' => 'id_equipo']);
+        return $this->hasOne(Equipo::className(), ['id_equipo' => 'fk_id_equipo']);
     }
 }

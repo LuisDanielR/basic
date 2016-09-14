@@ -28,8 +28,7 @@ class Equipo extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_equipo', 'nombre_equipo'], 'required'],
-            [['id_equipo'], 'integer'],
+            [['nombre_equipo'], 'required'],
             [['nombre_equipo'], 'string', 'max' => 255],
         ];
     }
@@ -50,6 +49,6 @@ class Equipo extends \yii\db\ActiveRecord
      */
     public function getFutbolistas()
     {
-        return $this->hasMany(Futbolista::className(), ['id_equipo' => 'id_equipo']);
+        return $this->hasMany(Futbolista::className(), ['fk_id_equipo' => 'id_equipo']);
     }
 }

@@ -12,13 +12,11 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'id_futbolista')->textInput() ?>
-
     <?= $form->field($model, 'nombre_futbolista')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'edad')->textInput() ?>
 
-    <?= $form->field($model, 'id_equipo')->textInput() ?>
+    <?= $form->field($model, 'fk_id_equipo')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'id_futbolista',
             'nombre_futbolista',
             'edad',
-            'id_equipo',
+            'fk_id_equipo',
         ],
     ]) ?>
 

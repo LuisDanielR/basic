@@ -23,11 +23,15 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'id_futbolista',
+            [
+                'attribute'=>'fk_id_equipo',
+                'value'=>'fkIdEquipo.nombre_equipo'
+                
+            ],
+            //'id_futbolista',
             'nombre_futbolista',
-            'edad',
-            'id_equipo',
+            //'edad',
+            //'fk_id_equipo',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

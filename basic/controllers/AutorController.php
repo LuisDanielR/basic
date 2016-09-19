@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Futbolista;
-use app\models\FutbolistaSearch;
+use app\models\Autor;
+use app\models\AutorSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
+
 /**
- * FutbolistaController implements the CRUD actions for Futbolista model.
+ * AutorController implements the CRUD actions for Autor model.
  */
-class FutbolistaController extends Controller
+class AutorController extends Controller
 {
     /**
      * @inheritdoc
@@ -20,16 +20,6 @@ class FutbolistaController extends Controller
     public function behaviors()
     {
         return [
-            'access'=>[
-              'class'=>AccessControl::classname(),
-              'only'=>['create','update'],
-              'rules'=>[
-                  [
-                      'allow'=>true,
-                      'roles'=>['@']
-                  ]
-              ]
-            ], 
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -40,12 +30,12 @@ class FutbolistaController extends Controller
     }
 
     /**
-     * Lists all Futbolista models.
+     * Lists all Autor models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new FutbolistaSearch();
+        $searchModel = new AutorSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -55,7 +45,7 @@ class FutbolistaController extends Controller
     }
 
     /**
-     * Displays a single Futbolista model.
+     * Displays a single Autor model.
      * @param integer $id
      * @return mixed
      */
@@ -67,16 +57,16 @@ class FutbolistaController extends Controller
     }
 
     /**
-     * Creates a new Futbolista model.
+     * Creates a new Autor model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Futbolista();
+        $model = new Autor();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_futbolista]);
+            return $this->redirect(['view', 'id' => $model->id_autor]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -85,7 +75,7 @@ class FutbolistaController extends Controller
     }
 
     /**
-     * Updates an existing Futbolista model.
+     * Updates an existing Autor model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -95,7 +85,7 @@ class FutbolistaController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id_futbolista]);
+            return $this->redirect(['view', 'id' => $model->id_autor]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -104,7 +94,7 @@ class FutbolistaController extends Controller
     }
 
     /**
-     * Deletes an existing Futbolista model.
+     * Deletes an existing Autor model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -117,15 +107,15 @@ class FutbolistaController extends Controller
     }
 
     /**
-     * Finds the Futbolista model based on its primary key value.
+     * Finds the Autor model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Futbolista the loaded model
+     * @return Autor the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Futbolista::findOne($id)) !== null) {
+        if (($model = Autor::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
